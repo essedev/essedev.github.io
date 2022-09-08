@@ -394,3 +394,19 @@ section:last-child {
 .bi {
   margin-right: 5px;
 }
+
+.bi-linkedin {
+	color: #0e76a8;
+}
+
+.bi-link {
+	color: #00578A;
+}
+
+.bi-geo-alt-fill {
+	color: #ff4646;
+}
+
+.bi-envelope-fill {
+	color: #FFAA33;
+}
