@@ -157,7 +157,7 @@ article {
   height: auto;
   -webkit-border-radius: 50px;
   border-radius: 50px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 #name {
@@ -211,6 +211,7 @@ section:last-child {
 .sectionTitle {
   float: left;
   width: 25%;
+  text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .sectionContent {
@@ -394,6 +395,7 @@ section:last-child {
 
 .bi {
   margin-right: 5px;
+  text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .bi-linkedin {
