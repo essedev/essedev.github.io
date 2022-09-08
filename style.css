@@ -414,3 +414,8 @@ section:last-child {
 .bi-github {
 	color: #333;
 }
+
+.link {
+  color: #444;
+  text-decoration: none;
+}
