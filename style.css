@@ -211,7 +211,8 @@ section:last-child {
 .sectionTitle {
   float: left;
   width: 25%;
-  text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .sectionContent {
@@ -395,27 +396,27 @@ section:last-child {
 
 .bi {
   margin-right: 5px;
-  text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .bi-linkedin {
-	color: #0e76a8;
+  color: #0e76a8;
 }
 
 .bi-geo-alt-fill {
-	color: #ff4646;
+  color: #ff4646;
 }
 
 .bi-envelope-fill {
-	color: #FFAA33;
+  color: #ffaa33;
 }
 
 .bi-github {
-	color: #333;
+  color: #333;
 }
 
 .link {
   color: #444;
-  font-weight: bold;
-  text-decoration: none;
+  text-decoration: underline;
 }
