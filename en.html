@@ -1,238 +1,1139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Simone Salerno - Curriculum Vitae</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simone Salerno - Full-Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <meta name="viewport" content="width=device-width" />
-  <meta name="description" content="Curriculum Vitae of Simone Salerno." />
-  <meta charset="UTF-8" />
+    <!-- Add html2pdf.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link type="text/css" rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700|Lato:400,300" rel="stylesheet" type="text/css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet"
-    type="text/css" />
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #eef2ff;
+            --secondary: #8b5cf6;
+            --accent: #14b8a6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card {
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .skill-pill {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .skill-pill:hover {
+            transform: translateY(-2px);
+            border-color: currentColor;
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            top: 2.5rem;
+            height: calc(100% - 2.5rem);
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .contact-link {
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .header-bg {
+            background-image:
+                linear-gradient(120deg, rgba(79, 70, 229, 0.85) 0%, rgba(139, 92, 246, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Style for the portfolio link */
+        .portfolio-link {
+            background-color: rgba(218, 69, 213, 0.5) !important;
+        }
+
+        .portfolio-link:hover {
+            background-color: rgba(229, 94, 225, 0.5) !important;
+        }
+
+        #back-to-top {
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        @keyframes pulse {
+            0% {
+                --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+                --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7), var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            }
+
+            70% {
+                --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+                --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+                box-shadow: 0 0 0 10px rgba(79, 70, 229, 0), var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            }
+
+            100% {
+                --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+                --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0), var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            }
+        }
+
+        #back-to-top:hover {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Style for the generate PDF button */
+        #generate-pdf {
+            transition: all 0.3s ease;
+        }
+
+        #generate-pdf:hover {
+            animation: pulse 1.5s infinite;
+
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        secondary: '#8b5cf6',
+                        accent: '#14b8a6',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
-<body id="top">
-  <div id="cv">
-    <div class="mainDetails">
-      <div id="headshot">
-        <img src="profile.jpeg" alt="Simone Salerno" />
-      </div>
+<body class="bg-[#f9f9fc] text-gray-800">
+    <!-- Button to generate PDF -->
+    <button id="generate-pdf"
+        class="fixed top-24 right-8 z-50 bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary px-4 py-2 rounded-lg shadow-lg text-white transition-all duration-300 flex items-center">
+        <i class="fas fa-file-pdf mr-2"></i> Generate PDF <span
+            class="bg-orange-400 text-white ms-2 px-2 py-0.5 -mb-[0.1rem] rounded-full text-xs">beta</span>
+    </button>
 
-      <div id="name">
-        <h1>Simone Salerno</h1>
-        <h2>Curriculum Vitae</h2>
-      </div>
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-[#f9f9fc]/80 backdrop-blur-md border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-xl font-bold gradient-text">Simone Salerno</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#profile" class="nav-link text-gray-600 hover:text-primary transition">Profile</a>
+                    <a href="#experience" class="nav-link text-gray-600 hover:text-primary transition">Experience</a>
+                    <a href="#education" class="nav-link text-gray-600 hover:text-primary transition">Education</a>
+                    <a href="#skills" class="nav-link text-gray-600 hover:text-primary transition">Skills</a>
+                    <a href="#interests" class="nav-link text-gray-600 hover:text-primary transition">Interests</a>
+                    <a href="index.html"
+                        class=" flex items-center bg-primary/10 text-primary px-3 py-1 rounded-full hover:bg-primary/20 transition">
+                        <i class="fas fa-globe text-xs mr-1 -mb-[0.13rem]"></i>
+                        <span>IT</span>
+                    </a>
+                </div>
+                <button class="md:hidden focus:outline-none" id="menu-toggle">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="md:hidden hidden mt-2" id="mobile-menu">
+                <div class="flex flex-col space-y-2">
+                    <a href="#profile" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition">Profile</a>
+                    <a href="#experience" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition">Experience</a>
+                    <a href="#education" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition">Education</a>
+                    <a href="#skills" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition">Skills</a>
+                    <a href="#interests" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition">Interests</a>
+                    <a href="index.html"
+                        class="flex items-center bg-primary/10 text-primary px-3 py-2 rounded-lg hover:bg-primary/20 transition mt-2 w-min">
+                        <i class="fas fa-globe text-xs mr-1"></i>
+                        <span>IT</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-      <div id="contactDetails">
-        <ul>
-          <li>
-            <i class="bi bi-envelope-fill"></i><a href="mailto:contact@simonesalerno.it"
-              target="_blank">contact@simonesalerno.it</a>
-          </li>
-          <li><i class="bi bi-geo-alt-fill"></i>Gallarate, VA, Italy</li>
-          <li>
-            <i class="bi bi-linkedin"></i><a href="https://www.linkedin.com/in/simone-salerno/"
-              target="_blank">LinkedIn</a>
-          </li>
-          <li>
-            <i class="bi bi-github"></i><a href="https://github.com/essedev/" target="_blank">GitHub</a>
-          </li>
-          <li>
-            <i class="bi bi-translate"></i><a href="https://essedev.github.io/">Italian</a>
-          </li>
-        </ul>
-      </div>
-      <div class="clear"></div>
+    <!-- Header -->
+    <header class="py-24 header-bg text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col items-center text-center">
+                <div class="inline-block mb-6 rounded-full p-1 bg-white/20 backdrop-blur-sm">
+                    <div class="px-6 py-2 rounded-full bg-white/10">
+                        <span class="text-white font-medium">Full-Stack Developer</span>
+                    </div>
+                </div>
+
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">Simone Salerno</h1>
+
+                <p class="text-xl mb-10 max-w-2xl text-white">
+                    I transform complex ideas into intuitive and scalable digital solutions
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="mailto:contact@simonesalerno.it"
+                        class="contact-link flex items-center gap-2 bg-white/25 hover:bg-white/35 backdrop-blur-sm px-5 py-3 rounded-full transition font-medium">
+                        <i class="fas fa-envelope -mb-[0.2rem]"></i>
+                        <span>contact@simonesalerno.it</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/simone-salerno/" target="_blank"
+                        class="contact-link flex items-center gap-2 bg-white/25 hover:bg-white/35 backdrop-blur-sm px-5 py-3 rounded-full transition font-medium">
+                        <i class="fab fa-linkedin -mb-[0.1rem]"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/essedev/" target="_blank"
+                        class="contact-link flex items-center gap-2 bg-white/25 hover:bg-white/35 backdrop-blur-sm px-5 py-3 rounded-full transition font-medium">
+                        <i class="fab fa-github -mb-[0.1rem]"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://simonesalerno.it/" target="_blank"
+                        class="contact-link portfolio-link flex items-center gap-2 backdrop-blur-sm px-5 py-3 rounded-full transition font-medium">
+                        <i class="fas fa-globe -mb-[0.1rem]"></i>
+                        <span>Portfolio</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-20">
+        <!-- Profile Section -->
+        <section id="profile" class="section mb-24">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-800 flex items-center">
+                    <span class="mr-3 text-primary"><i class="fas fa-user"></i></span>
+                    Personal profile
+                </h2>
+                <div class="card bg-white">
+                    <div class="p-8 flex flex-col gap-4">
+                        <p class="text-gray-700 leading-relaxed text-lg">
+                            Full-stack developer with a unique background that combines practical experience as a
+                            freelancer
+                            with the strategic vision acquired as a co-founder of a startup.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed text-lg">
+                            I approach each project with the aim of creating solid and meaningful solutions, leveraging
+                            my
+                            ability to move agilely between software development and hardware understanding.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed text-lg">
+                            I am particularly fascinated by the potential of Artificial Intelligence and actively
+                            explore
+                            its applications to create added value.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed text-lg">
+                            I enjoy collaborating and transforming ambitious ideas into concrete projects.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section mb-24">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-800 flex items-center">
+                    <span class="mr-3 text-primary"><i class="fas fa-briefcase"></i></span>
+                    Experience
+                </h2>
+
+                <div class="space-y-8">
+                    <!-- Experience 1 -->
+                    <div class="card hover:border-primary">
+                        <div class="p-8">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Freelance Developer</h3>
+                                    <p class="text-gray-500 mb-2">August 2023 - Present</p>
+                                </div>
+                                <span
+                                    class="px-3 py-1 bg-primary-light text-primary text-sm font-medium rounded-full">Current</span>
+                            </div>
+                            <div class="mt-4 text-gray-700">
+                                <p>I work as a freelance developer for multiple clients, mainly developing websites.
+                                    Following the latest industry trends, I create intuitive, efficient, and scalable
+                                    solutions that bring authentic value. I also participated in the creation of a new
+                                    educational startup, <a href="https://ethicode.eu/" target="_blank"
+                                        class="text-primary hover:underline">Ethicode</a>, of which I entirely designed
+                                    and developed the online platform.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 2 -->
+                    <div class="card hover:border-primary">
+                        <div class="p-8">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Warehouse Operator at DHL</h3>
+                                    <p class="text-gray-500 mb-2">January 2024 - February 2024</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-gray-700">
+                                <p>I worked as a warehouse operator at DHL in Malpensa for two months. During this
+                                    period, I gained skills in logistics and airport security.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 3 -->
+                    <div class="card hover:border-primary">
+                        <div class="p-8">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Tutor at Kodland</h3>
+                                    <p class="text-gray-500 mb-2">February 2022 - July 2023</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-gray-700">
+                                <p>I worked as a freelancer tutoring children and teenagers online, particularly
+                                    teaching them how to program using Scratch, Python, and Roblox Studio.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 4 -->
+                    <div class="card hover:border-primary">
+                        <div class="p-8">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Translator at Kodland</h3>
+                                    <p class="text-gray-500 mb-2">February 2022 - December 2022</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-gray-700">
+                                <p>I worked as a translator of courses and content, mainly Italian-English.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 5 -->
+                    <div class="card hover:border-primary">
+                        <div class="p-8">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Collaborator at Mostra del Bagno
+                                        S.R.L.</h3>
+                                    <p class="text-gray-500 mb-2">September 2020 - January 2022</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-gray-700">
+                                <p>I learned to use 3D design software as a tool for creating and selling quotes,
+                                    performed checks and technical assistance on computer systems, and assembled new
+                                    computers.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 6 -->
+                    <div class="card hover:border-primary">
+                        <div class="p-8">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Intern at Microchip Technology Inc.
+                                    </h3>
+                                    <p class="text-gray-500 mb-2">June 2019</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-gray-700">
+                                <p>I worked as an intern developing programs in C language for Microchip development
+                                    boards.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 7 -->
+                    <div class="card hover:border-primary">
+                        <div class="p-8">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Intern at L.R.L. Elettrica S.R.L.
+                                    </h3>
+                                    <p class="text-gray-500 mb-2">June - August 2018</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-gray-700">
+                                <p>I worked as an intern assembling machinery components and using management software
+                                    for warehouse inventory.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section mb-24">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-800 flex items-center">
+                    <span class="mr-3 text-primary"><i class="fas fa-graduation-cap"></i></span>
+                    Education
+                </h2>
+
+                <div class="space-y-8">
+                    <!-- Education 1 -->
+                    <div class="card hover:border-primary">
+                        <div class="p-8">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">University of Insubria
+                                    </h3>
+                                    <p class="text-gray-500 mb-2">September 2022 - September 2024</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-gray-700">
+                                <p>I attended the three-year degree course in Computer Science at the University of
+                                    Insubria for one year.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education 2 -->
+                    <div class="card hover:border-primary">
+                        <div class="p-8">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">University of Pavia</h3>
+                                    <p class="text-gray-500 mb-2">October 2021 - September 2022</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-gray-700">
+                                <p>I attended the new degree course in "Artificial Intelligence" at the University of
+                                    Pavia for one year. I also attended lessons at the Milan Bicocca and Statale
+                                    campuses.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education 3 -->
+                    <div class="card hover:border-primary">
+                        <div class="p-8">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Andrea Ponti Technical Institute</h3>
+                                    <p class="text-gray-500 mb-2">September 2017 - June 2021</p>
+                                </div>
+                                <span
+                                    class="px-3 py-1 bg-green-50 text-green-600 text-sm font-medium rounded-full">Diploma
+                                    100/100</span>
+                            </div>
+                            <div class="mt-4 text-gray-700">
+                                <p>Graduated with 100 points in "Computer Science and Telecommunications". As a project
+                                    for the high school exam, I presented a web application designed to facilitate the
+                                    evaluation of one's school internship experiences by filling out specific forms. I
+                                    mainly used Python as a tool, and it is also available online on my <a
+                                        href="https://github.com/essedev/didatticaintegrata.it/" target="_blank"
+                                        class="text-primary hover:underline">GitHub</a> profile.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section mb-24">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-800 flex items-center">
+                    <span class="mr-3 text-primary"><i class="fas fa-code"></i></span>
+                    Skills
+                </h2>
+                <div class="card bg-white">
+                    <div class="p-8">
+                        <h4 class="text-lg font-semibold text-gray-700 mb-4">Web Frontend Technologies</h4>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span
+                                class="skill-pill bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium">HTML,
+                                CSS, JavaScript</span>
+                            <span
+                                class="skill-pill bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium">TypeScript,
+                                Node.js</span>
+                            <span
+                                class="skill-pill bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium">Next.js,
+                                SvelteKit, Vue.js</span>
+                            <span
+                                class="skill-pill bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium">Tailwind
+                                CSS</span>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-gray-700 mb-4">Backend, API & Database</h4>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span
+                                class="skill-pill bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">Python,
+                                PHP, Java</span>
+                            <span
+                                class="skill-pill bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">REST
+                                APIs, Flask, Fastify</span>
+                            <span
+                                class="skill-pill bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">PostgreSQL,
+                                SQLite</span>
+                            <span
+                                class="skill-pill bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">SQLAlchemy,
+                                Drizzle ORM</span>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-gray-700 mb-4">DevOps & Tools</h4>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span
+                                class="skill-pill bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium">Git,
+                                Docker</span>
+                            <span
+                                class="skill-pill bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium">Linux,
+                                Serverless, Self-Hosting</span>
+                            <span
+                                class="skill-pill bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium">Nginx</span>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-gray-700 mb-4">Design</h4>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span
+                                class="skill-pill bg-fuchsia-100 text-fuchsia-700 px-4 py-2 rounded-full text-sm font-medium">UI/UX
+                                Design</span>
+                            <span
+                                class="skill-pill bg-fuchsia-100 text-fuchsia-700 px-4 py-2 rounded-full text-sm font-medium">Suite
+                                Adobe</span>
+                            <span
+                                class="skill-pill bg-fuchsia-100 text-fuchsia-700 px-4 py-2 rounded-full text-sm font-medium">Basics
+                                of 3D design</span>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-gray-700 mb-4">Artificial Intelligence</h4>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span
+                                class="skill-pill bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium">AI
+                                Model APIs (OpenAI, etc.)</span>
+                            <span
+                                class="skill-pill bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium">AI
+                                Development Tools (Cursor, etc.)</span>
+                            <span
+                                class="skill-pill bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium">AI-based
+                                Automations</span>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-gray-700 mb-4">Professional Skills</h4>
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="skill-pill bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium">Teamwork</span>
+                            <span
+                                class="skill-pill bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium">Problem
+                                Solving</span>
+                            <span
+                                class="skill-pill bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium">English
+                                (B2)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interests Section -->
+        <section id="interests" class="section">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-800 flex items-center">
+                    <span class="mr-3 text-primary"><i class="fas fa-heart"></i></span>
+                    Other interests
+                </h2>
+                <div class="card p-8 bg-white">
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="skill-pill bg-purple-100 text-purple-700 px-5 py-3 rounded-full text-sm font-medium">
+                            <i class="fas fa-chart-line mr-2"></i> Finance and Trading
+                        </span>
+                        <span
+                            class="skill-pill bg-purple-100 text-purple-700 px-5 py-3 rounded-full text-sm font-medium">
+                            <i class="fab fa-bitcoin mr-2"></i> Cryptocurrencies and Web3
+                        </span>
+                        <span
+                            class="skill-pill bg-purple-100 text-purple-700 px-5 py-3 rounded-full text-sm font-medium">
+                            <i class="fas fa-car mr-2"></i> Motors
+                        </span>
+                        <span
+                            class="skill-pill bg-purple-100 text-purple-700 px-5 py-3 rounded-full text-sm font-medium">
+                            <i class="fas fa-camera mr-2"></i> Photography and Travel
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0 text-center md:text-left">
+                    <h3 class="text-2xl font-bold gradient-text">Simone Salerno</h3>
+                    <p class="text-gray-400 mt-2">Full-Stack Developer</p>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="mailto:contact@simonesalerno.it"
+                        class="text-gray-300 hover:text-white transition transform hover:scale-110">
+                        <i class="fas fa-envelope fa-lg"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/simone-salerno/" target="_blank"
+                        class="text-gray-300 hover:text-white transition transform hover:scale-110">
+                        <i class="fab fa-linkedin fa-lg"></i>
+                    </a>
+                    <a href="https://github.com/essedev/" target="_blank"
+                        class="text-gray-300 hover:text-white transition transform hover:scale-110">
+                        <i class="fab fa-github fa-lg"></i>
+                    </a>
+                    <a href="https://simonesalerno.it/" target="_blank"
+                        class="text-gray-300 hover:text-white transition transform hover:scale-110">
+                        <i class="fas fa-globe fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="h-px w-full bg-gradient-to-r from-transparent via-gray-700 to-transparent my-8"></div>
+            <div class="text-center text-gray-300 text-sm">
+                <p>&copy; <span id="currentYear"></span> Simone Salerno. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top"
+        class="fixed bottom-8 right-8 bg-gradient-to-r from-primary to-secondary h-12 w-12 rounded-full shadow-lg text-white opacity-0 invisible transition-all duration-300 transform translate-y-4 hover:scale-110 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-[100]"
+        style="display: none;">
+        <div class="text-center text-white">
+            <i class="fas fa-spinner fa-spin fa-3x mb-4"></i>
+            <p class="text-xl font-semibold">PDF generation in progress...</p>
+            <p class="text-sm">This may take a few seconds.</p>
+        </div>
     </div>
 
-    <div id="mainArea">
-      <section>
-        <article>
-          <div class="sectionTitle">
-            <h1>Personal Profile</h1>
-          </div>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
 
-          <div class="sectionContent">
-            <p>
-              Full-Stack developer who loves diving into innovative projects
-              and solving problems.<br />
-              Following the latest industry trends, I aim to design intuitive,
-              efficient, and scalable solutions that truly impress.<br />
-              Always been passionate about technology, in addition to my
-              ability as a software developer, I also have quite experience on
-              the hardware side.<br />
-              I am able to quickly acquire abilities in any field and have
-              good skills in working in team.
-            </p>
-          </div>
-        </article>
-        <div class="clear"></div>
-      </section>
+        // Scroll animation
+        const sections = document.querySelectorAll('.section');
 
-      <section>
-        <div class="sectionTitle">
-          <h1>Experience</h1>
-        </div>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
 
-        <div class="sectionContent">
-          <article>
-            <h2>Freelance developer</h2>
-            <p class="subDetails">August 2023 - present</p>
-            <p>
-              I work as a freelance developer for multiple clients, mainly
-              developing websites.<br />
-              I am also gaining experience in developing a startup and
-              entrepreneurial skills, working on various projects and
-              platforms.
-            </p>
-          </article>
+        sections.forEach(section => {
+            observer.observe(section);
+        });
 
-          <article>
-            <h2>Warehouse operator at DHL</h2>
-            <p class="subDetails">January 2024 - February 2024</p>
-            <p>
-              I worked as a warehouse operator at DHL in Malpensa for two months. During this time, I acquired skills in
-              logistics and
-              airport security.
-            </p>
-          </article>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
 
-          <article>
-            <h2>Tutor at Kodland</h2>
-            <p class="subDetails">February 2022 - July 2023</p>
-            <p>
-              I worked as a freelancer tutoring kids and teens online,
-              especially teaching them to code using Scratch, Python and
-              Roblox Studio.
-            </p>
-          </article>
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
 
-          <article>
-            <h2>Translator at Kodland</h2>
-            <p class="subDetails">February 2022 - December 2022</p>
-            <p>
-              I worked as a translator of courses and content, mainly
-              Italian-English.
-            </p>
-          </article>
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
 
-          <article>
-            <h2>Collaborator at Mostra del Bagno S.R.L.</h2>
-            <p class="subDetails">September 2020 - January 2022</p>
-            <p>
-              I learned to use a 3D design software as a tool for creation and
-              sales of quotes, performed checks and technical assistance on
-              computer systems, assembled new computers.
-            </p>
-          </article>
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
 
-          <article>
-            <h2>Internship at Microchip Technology Inc.</h2>
-            <p class="subDetails">June 2019</p>
-            <p>
-              I worked as an intern developing programs in C language for
-              Microchip development boards.
-            </p>
-          </article>
+        // Imposta l'anno corrente nel footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-          <article>
-            <h2>Internship at L.R.L. Elettrica S.R.L.</h2>
-            <p class="subDetails">June - August 2018</p>
-            <p>
-              I worked as an intern assembling machinery components and using
-              a management software for warehouse inventory.
-            </p>
-          </article>
-        </div>
-        <div class="clear"></div>
-      </section>
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        const scrollThreshold = 500; // Numero di pixel prima che il bottone appaia
 
-      <section>
-        <div class="sectionTitle">
-          <h1>Education</h1>
-        </div>
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > scrollThreshold) {
+                backToTopButton.classList.add('visible');
+                // Aggiungi l'animazione pulsante dopo un breve ritardo
+                setTimeout(() => {
+                    backToTopButton.classList.add('pulse');
+                }, 300);
+            } else {
+                backToTopButton.classList.remove('visible');
+                backToTopButton.classList.remove('pulse');
+            }
+        });
 
-        <div class="sectionContent">
-          <article>
-            <h2>University of Insubria</h2>
-            <p class="subDetails">September 2022 - September 2024</p>
-            <p>
-              I followed for a year the three-year degree course in Computer
-              Science at the University of Insubria.
-            </p>
-          </article>
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
 
-          <article>
-            <h2>University of Pavia</h2>
-            <p class="subDetails">October 2021 - September 2022</p>
-            <p>
-              I followed for a year the new degree course in "Artificial
-              Intelligence" at the University of Pavia. I also took classes in
-              Milano Bicocca and Statale.
-            </p>
-          </article>
+        // Funzione per generare il PDF
+        // Funzione per generare il PDF
+        document.getElementById('generate-pdf').addEventListener('click', function () {
+            // Cambio stato del pulsante
+            const btn = this;
+            const originalButtonText = btn.innerHTML;
+            btn.innerHTML =
+                '<i class="fas fa-spinner fa-spin mr-2"></i> Elaborazione...';
+            btn.disabled = true;
 
-          <article>
-            <h2>Technical Institute Andrea Ponti</h2>
-            <p class="subDetails">September 2017 - June 2021</p>
-            <p>
-              Graduated with 100 points in "Information technology and
-              Telecommunications". At my final exam I presented as project a
-              web application designed to facilitate the evaluation of school
-              internships experiences by filling out modules. The main tool I
-              used is Python, the code is also available online on my
-              <a href="https://github.com/essedev/didatticaintegrata.it/" target="_blank" class="link">GitHub</a>
-              profile.
-            </p>
-          </article>
-        </div>
-        <div class="clear"></div>
-      </section>
+            // Preparazione per la stampa: rendi visibili tutte le sezioni
+            const allSections = document.querySelectorAll('.section');
+            allSections.forEach((section) => {
+                section.classList.add('visible');
+            });
 
+            // Riferimenti agli elementi da nascondere temporaneamente
+            const navbar = document.querySelector('nav');
+            const footer = document.querySelector('footer');
+            const backToTopBtn = document.getElementById('back-to-top');
+            const generatePdfBtn = document.getElementById('generate-pdf');
 
-      <section>
-        <div class="sectionTitle">
-          <h1>Skills</h1>
-        </div>
+            // Nascondi temporaneamente elementi non necessari per il PDF
+            const elementsToHide = [navbar, footer, backToTopBtn, generatePdfBtn];
+            const originalDisplayStyles = elementsToHide.map((el) =>
+                el ? el.style.display : null
+            );
+            elementsToHide.forEach((el) => {
+                if (el) el.style.display = 'none';
+            });
 
-        <div class="sectionContent">
-          <ul class="keySkills">
-            <li>English Language (B2)</li>
-            <li>Driving Licence (B)</li>
-            <li>Office Suite</li>
-            <li>Python, Java, PHP</li>
-            <li>Flask, Node.js, React</li>
-            <li>Teamwork</li>
-            <li>Problem Solving</li>
-            <li>HTML, CSS, JavaScript</li>
-            <li>Basic 3D design</li>
-            <li>Linux, Serverless</li>
-          </ul>
-        </div>
-        <div class="clear"></div>
-      </section>
+            // Salva lo scrollY originale
+            const originalScrollY = window.scrollY;
 
-      <section>
-        <div class="sectionTitle">
-          <h1>Other interests</h1>
-        </div>
+            // Scorri in cima alla pagina per catturare tutto il contenuto
+            window.scrollTo(0, 0);
 
-        <div class="sectionContent">
-          <ul class="keySkills">
-            <li>Finance and Trading</li>
-            <li>Cryptos and Web3</li>
-            <li>Motors</li>
-            <li>Photography and Travel</li>
-          </ul>
-        </div>
-        <div class="clear"></div>
-      </section>
-    </div>
-  </div>
+            // Aggiungi alcuni stili temporanei per il PDF
+            const tempStyle = document.createElement('style');
+            tempStyle.innerHTML = `
+            html,
+            body {
+                margin: 0 !important;
+                padding: 0 !important;
+                background-color: white !important;
+                line-height: 1.3 !important;
+            }
+
+            a:not(.contact-link) {
+                color: #4f46e5 !important;
+            }
+
+            .container {
+                width: 100% !important;
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+                max-width: none !important;
+            }
+
+            .max-w-4xl,
+            .max-w-2xl {
+                max-width: none !important;
+                width: 100% !important;
+            }
+
+            .section {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+                margin-bottom: 12px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                padding: 0 8px !important;
+            }
+
+            .card {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                margin-bottom: 8px !important;
+                border: 1px solid #e2e8f0 !important;
+                box-shadow: none !important;
+            }
+
+            /* Uniforma il padding di tutte le card a 8px */
+            .card,
+            .card>div,
+            .card .p-8 {
+                padding: 8px !important;
+            }
+
+            .card p {
+                margin-bottom: 3px !important;
+                font-size: 12px !important;
+                line-height: 1.2 !important;
+            }
+
+            h2,
+            h3,
+            h4 {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .card:hover,
+            .skill-pill:hover {
+                transform: none !important;
+                border-color: #e2e8f0 !important;
+            }
+
+            header.header-bg {
+                background-size: cover !important;
+                background-position: center !important;
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+                padding-top: 22px !important;
+                padding-bottom: 12px !important;
+                height: auto !important;
+            }
+
+            main {
+                padding-top: 8px !important;
+                padding-bottom: 0 !important;
+            }
+
+            header h1 {
+                font-size: 26px !important;
+                margin-bottom: 5px !important;
+                margin-top: -4px !important;
+            }
+
+            header p {
+                font-size: 11px !important;
+                margin-bottom: 6px !important;
+            }
+
+            header span {
+                font-size: 12px !important;
+            }
+
+            .contact-link {
+                padding: 10px 16px !important;
+                margin-top: 22px !important;
+                margin-bottom: 10px !important;
+            }
+
+            /* Riduciamo i margini e padding generali */
+            .mt-4,
+            .my-4 {
+                margin-top: 2px !important;
+            }
+
+            .mb-4,
+            .my-4 {
+                margin-bottom: 2px !important;
+            }
+
+            .mt-8,
+            .my-8 {
+                margin-top: 4px !important;
+            }
+
+            .mb-8,
+            .my-8 {
+                margin-bottom: 4px !important;
+            }
+
+            .py-1 {
+                padding-top: 1px !important;
+                padding-bottom: 1px !important;
+            }
+
+            .py-2 {
+                padding-top: 6px !important;
+                padding-bottom: 6px !important;
+            }
+
+            .px-3 {
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+            }
+
+            .bg-green-50 {
+                white-space: nowrap;
+            }
+
+            .gap-4 {
+                gap: 2px !important;
+            }
+
+            .gap-6 {
+                gap: 8px !important;
+            }
+
+            .px-6 {
+                padding-inline: 12px !important;
+                padding-top: 2px !important;
+                padding-bottom: 6px !important;
+            }
+
+            .skill-pill {
+                font-size: 8px !important;
+                padding: 4px 14px !important;
+                padding-bottom: 6px !important;
+                margin-block: 2px !important;
+                margin-right: 6px !important;
+                display: inline-block !important;
+            }
+
+            /* Layout a colonne per esperienze */
+            #experience .space-y-8 {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 8px !important;
+                margin-bottom: 0 !important;
+            }
+
+            #experience .space-y-8>* {
+                width: calc(50% - 4px) !important;
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+                flex-grow: 0 !important;
+            }
+
+            /* Layout a colonne per istruzione */
+            #education .space-y-8 {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 8px !important;
+                margin-bottom: 0 !important;
+            }
+
+            #education .space-y-8>* {
+                width: calc(50% - 4px) !important;
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+                flex-grow: 0 !important;
+            }
+
+            /* Rimuoviamo padding specifici da #skills e #interests in modo da avere il padding uniforme */
+            #skills .card,
+            #interests .card {
+                padding: 8px !important;
+            }
+
+            #skills .flex.flex-wrap,
+            #interests .flex.flex-wrap {
+                gap: 2px !important;
+                margin-bottom: 4px !important;
+            }
+
+            /* Assicura che i dettagli importanti siano sempre visibili */
+            .text-gray-500 {
+                font-size: 8px !important;
+            }
+
+            /* Adattamenti responsivi */
+            .text-xl,
+            .text-2xl {
+                font-size: 16px !important;
+                margin-bottom: 3px !important;
+                line-height: 1.2 !important;
+            }
+
+            .text-3xl,
+            .text-4xl {
+                font-size: 18px !important;
+                margin-bottom: 5px !important;
+                margin-top: 8px !important;
+            }
+
+            .text-lg {
+                font-size: 14px !important;
+            }
+
+            .text-sm {
+                font-size: 12px !important;
+            }
+            `;
+            document.head.appendChild(tempStyle);
+
+            // Configura le opzioni del PDF
+            const opt = {
+                margin: [0, 0, 0, 0],
+                filename: 'CV_Simone_Salerno.pdf',
+                image: {
+                    type: 'png',
+                    quality: 1.0
+                },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    scrollY: 0,
+                    logging: true,
+                    letterRendering: true,
+                    removeContainer: true,
+                    windowWidth: document.documentElement.offsetWidth,
+                    backgroundColor: '#ffffff'
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait',
+                    compress: true,
+                    hotfixes: ['px_scaling'],
+                    putOnlyUsedFonts: true,
+                    precision: 16
+                },
+                pagebreak: {
+                    mode: ['avoid-all', 'css', 'legacy'],
+                    // MODIFICA: Forza l'interruzione di pagina solo prima della sezione #education
+                    // Questo farà sì che #education, #skills e #interests inizino sulla seconda pagina
+                    before: ['#education'],
+                    avoid: ['.card', 'h2', 'h3'] // Mantiene le regole per evitare interruzioni interne
+                },
+                enableLinks: true // Attiva i link nel PDF
+            };
+
+            // Attendi un momento per assicurarsi che tutti gli stili siano applicati
+            setTimeout(() => {
+                // Genera il PDF dalla pagina completa escludendo elementi nascosti
+                html2pdf()
+                    .set(opt)
+                    .from(document.documentElement)
+                    .save()
+                    .then(() => {
+                        // Pulizia: ripristina lo stato originale
+
+                        // Ripristina lo scroll
+                        window.scrollTo(0, originalScrollY);
+
+                        // Rimuovi lo stile temporaneo
+                        document.head.removeChild(tempStyle);
+
+                        // Ripristina gli elementi nascosti
+                        elementsToHide.forEach((el, index) => {
+                            if (el) el.style.display = originalDisplayStyles[index] || '';
+                        });
+
+                        // Ripristina il pulsante
+                        btn.innerHTML = originalButtonText;
+                        btn.disabled = false;
+                    })
+                    .catch((err) => {
+                        console.error('Errore nella generazione del PDF:', err);
+
+                        // Ripristina lo scroll
+                        window.scrollTo(0, originalScrollY);
+
+                        // Rimuovi lo stile temporaneo
+                        document.head.removeChild(tempStyle);
+
+                        // Ripristina gli elementi nascosti
+                        elementsToHide.forEach((el, index) => {
+                            if (el) el.style.display = originalDisplayStyles[index] || '';
+                        });
+
+                        // Ripristina il pulsante
+                        btn.innerHTML = originalButtonText;
+                        btn.disabled = false;
+
+                        alert(
+                            'Si è verificato un errore durante la generazione del PDF. Controlla la console per dettagli.'
+                        );
+                    });
+            }, 300);
+        });
+    </script>
 </body>
 
 </html>
